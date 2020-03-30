@@ -21,11 +21,12 @@ last="$(ls -dq "${manifests}"* | tail -n 1)"
 # Build release manifest
 for manifest in "${manifests}"*; do
     echo "# ${manifest}"
+    # echo "$(cat ${manifest})" | sed -e "s|{{ .Values.image.tag }}|"${TAG}"|"
     cat "${manifest}" | sed -e "s|{{ .Values.image.tag }}|"${TAG}"|"
 
     # Don't add the separator if it's the last manifest
     if [[ "${manifest}" != "${last}" ]]; then
-        echo -e "\n---"
+        echo -e "---"
     fi
 done > "${RELEASES}/${TAGGED_RELEASE}"
 
