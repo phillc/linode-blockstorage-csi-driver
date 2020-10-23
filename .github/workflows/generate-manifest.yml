@@ -15,7 +15,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -- pkg/linode-bs/deploy/releases/linode-blockstorage-csi-driver*\.yaml
         git commit -m "Update manifests"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        git push
